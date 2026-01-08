@@ -1,4 +1,4 @@
-[gd_scene load_steps=148 format=3 uid="uid://cedkmx6hm2rp8"]
+[gd_scene load_steps=154 format=3 uid="uid://cedkmx6hm2rp8"]
 
 [ext_resource type="Script" uid="uid://d1thbth6d3pwu" path="res://Scripts/Player/player.gd" id="1_yyp3u"]
 [ext_resource type="Texture2D" uid="uid://dybxqcfw7vl64" path="res://assets/Sprites/Player/FREE_Adventurer 2D Pixel Art/FREE_Adventurer 2D Pixel Art/Sprites/IDLE/idle_down.png" id="2_beohu"]
@@ -17,10 +17,11 @@
 [ext_resource type="Texture2D" uid="uid://c7t24tagvkhon" path="res://assets/Sprites/Player/FREE_Adventurer 2D Pixel Art/FREE_Adventurer 2D Pixel Art/Sprites/ATTACK 2/attack2_up.png" id="9_f4kvl"]
 [ext_resource type="Texture2D" uid="uid://toatamrc2vij" path="res://assets/Sprites/Player/FREE_Adventurer 2D Pixel Art/FREE_Adventurer 2D Pixel Art/Sprites/RUN/run_left.png" id="11_kahdj"]
 [ext_resource type="Texture2D" uid="uid://c47srvkervp35" path="res://assets/Sprites/Player/FREE_Adventurer 2D Pixel Art/FREE_Adventurer 2D Pixel Art/Sprites/RUN/run_right.png" id="12_rkj84"]
-
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_h2qss"]
-radius = 8.0
-height = 34.0
+[ext_resource type="Script" uid="uid://xxogel2408qx" path="res://Scripts/State_Machine/state_machine.gd" id="18_h8ma5"]
+[ext_resource type="Script" uid="uid://d3hcrg8iwr3u0" path="res://Scripts/State_Machine/States/idle_player_state.gd" id="18_hnuln"]
+[ext_resource type="Script" uid="uid://chchqydf0b3di" path="res://Scripts/State_Machine/States/walking_player_state.gd" id="19_rcvs5"]
+[ext_resource type="Script" uid="uid://dw6ieyyhah1tw" path="res://Scripts/State_Machine/States/attack_player_state.gd" id="20_h8ma5"]
+[ext_resource type="PackedScene" uid="uid://cloxj0p6ofqsj" path="res://Scenes/UI/debug_panel/ui.tscn" id="22_eksi1"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_nny5c"]
 atlas = ExtResource("2_o11dq")
@@ -1001,20 +1002,60 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="Player" type="CharacterBody2D"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_eksi1"]
+radius = 5.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_jincj"]
+
+[node name="Player" type="CharacterBody2D" groups=["Player"]]
 y_sort_enabled = true
 collision_layer = 2
 collision_mask = 13
 script = ExtResource("1_yyp3u")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." groups=["Player"]]
-position = Vector2(0, 1)
-shape = SubResource("CapsuleShape2D_h2qss")
-
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -18)
 sprite_frames = SubResource("SpriteFrames_phvcy")
-animation = &"idle_down"
+animation = &"attack1_right"
 autoplay = "idle_down"
+frame = 2
+frame_progress = 0.7561666
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -11)
+shape = SubResource("CircleShape2D_eksi1")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(4, 4)
+
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("intial_state")]
+script = ExtResource("18_h8ma5")
+intial_state = NodePath("IdlePlayerState")
+
+[node name="IdlePlayerState" type="Node" parent="StateMachine"]
+script = ExtResource("18_hnuln")
+
+[node name="WalkingPlayerState" type="Node" parent="StateMachine"]
+script = ExtResource("19_rcvs5")
+
+[node name="AttackPlayerState" type="Node" parent="StateMachine"]
+script = ExtResource("20_h8ma5")
+
+[node name="UI" parent="." instance=ExtResource("22_eksi1")]
+offset_left = -143.0
+offset_top = -80.0
+offset_right = -143.0
+offset_bottom = -80.0
+
+[node name="Timers" type="Node" parent="."]
+
+[node name="Invictimer" type="Timer" parent="Timers"]
+one_shot = true
+
+[node name="AttackTimer" type="Timer" parent="Timers"]
+one_shot = true
+
+[node name="ShapeCast" type="ShapeCast2D" parent="."]
+position = Vector2(7, -12)
+shape = SubResource("CircleShape2D_jincj")
+target_position = Vector2(25, 0)

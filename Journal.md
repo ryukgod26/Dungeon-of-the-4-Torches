@@ -27,3 +27,22 @@
 
 ---
 
+## Day 2 [08/01/2026] (Time took around 3-4 hours)
+
+### Player System
+- **Changes**:
+  - Created StateMAchine and States for the Player.
+  - Distributed the Player Code and functionality into States
+  - Added Attack Logic to the Player With ShapeCast2D intead of Area2D (not Properly Working Yet)
+  - Change the Player Collision Shape and Offset accordng to needs of Y-Sorting
+
+### Enemy System - Slimes
+- **Changes**:
+  - Added Movement Logic For the Slime.
+  - Created 2 States for the Slime Idle,Follow and Attack and all 3 of them are working
+  - Added Attack and Invul Timer to the Slime
+
+### World Changes
+- **Changes**:
+  - Added assets from itch.io into the Game for testing
+  - Created Some Decorations and floor and also tested Y-Sorting

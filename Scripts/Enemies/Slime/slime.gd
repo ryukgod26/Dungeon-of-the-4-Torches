@@ -1,29 +1,71 @@
 extends CharacterBody2D
 
 var player
-const SPEED = 50
+const SPEED = 30
 var health := 2
-enum states {Idle,Follow,Attack}
+var last_dir := "_down"
+enum EnemyStates {Idle,Follow,Attack}
+var current_state:EnemyStates
+var attack_radius := 15.
+var direction
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 
 func _ready() -> void:
-	player = get_tree().get_first_node_in_group("Player")
+	animated_sprite.play("idle_down")
+	current_state = EnemyStates.Idle
 
-func _process(delta: float) -> void:
-	pass
+func _physics_process(delta: float) -> void:
+	match current_state:
+		EnemyStates.Idle:
+			handle_idle()
+		EnemyStates.Follow:
+			follow_player()
+		EnemyStates.Attack:
+			handle_attack()
+	#print("Current State: " , current_state)
 
-func follow_player(delta):
+func follow_player() -> void:
 	if player:
-		# 1. Calculate direction to player
-		var direction = global_position.direction_to(player.global_position)
-		
-		# 2. Move
+		direction = global_position.direction_to(player.global_position)
 		velocity = direction * SPEED
+		last_dir = Globals.get_direction(direction)
+		animated_sprite.play("run" + last_dir)
+		if global_position.distance_to(player.global_position) < attack_radius:
+			current_state = EnemyStates.Attack
 		move_and_slide()
+	else:
+		current_state = EnemyStates.Idle
 
-func take_damage(damage):
+func take_damage(damage) -> void:
 	health -= damage
 	if health <= 0:
 		animated_sprite.play("death_down")
 		await animated_sprite.animation_finished
 		queue_free()
+
+func handle_idle() -> void:
+	animated_sprite.play("idle" + last_dir)
+	if player:
+		current_state = EnemyStates.Follow
+
+func handle_attack() -> void:
+	#if not $Timers/AttackTimer.is_stopped():
+		#animated_sprite.play("idle" + last_dir)
+	velocity = Vector2.ZERO
+	last_dir = Globals.get_direction(direction)
+	animated_sprite.play("attack" + last_dir)
+	player.take_damage(1)
+	$Timers/AttackTimer.start()
+	if not player:
+		current_state = EnemyStates.Idle
+	if global_position.distance_to(player.global_position) > attack_radius:
+		current_state = EnemyStates.Follow
+
+func _on_detection_area_body_entered(body: Node2D) -> void:
+	if body.is_in_group("Player"):
+		player = body
+
+
+func _on_detection_area_body_exited(body: Node2D) -> void:
+	if body.is_in_group("Player"):
+		player = null

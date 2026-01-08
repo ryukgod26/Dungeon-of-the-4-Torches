@@ -1,4 +1,4 @@
-[gd_scene load_steps=198 format=3 uid="uid://buypn5fthmooc"]
+[gd_scene load_steps=200 format=3 uid="uid://buypn5fthmooc"]
 
 [ext_resource type="Script" uid="uid://dafa7sgdh8ay5" path="res://Scripts/Enemies/Slime/slime.gd" id="1_24h72"]
 [ext_resource type="Texture2D" uid="uid://d10am8sanxdya" path="res://assets/Sprites/Enemies/Slimes/free-slime-mobs-pixel-art-top-down-sprite-pack/PNG/Slime1/Attack/Slime1_Attack_full.png" id="2_afnd6"]
@@ -1447,9 +1447,13 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_e1fkv"]
-radius = 7.0
-height = 14.0
+[sub_resource type="CircleShape2D" id="CircleShape2D_24h72"]
+radius = 6.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_afnd6"]
+radius = 70.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_2nnad"]
 
 [node name="Slime" type="CharacterBody2D" groups=["Enemy"]]
 collision_layer = 4
@@ -1458,8 +1462,36 @@ script = ExtResource("1_24h72")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_mknkg")
-animation = &"attack_right"
+animation = &"idle_down"
+autoplay = "idle_down"
+offset = Vector2(0, -7)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(1, 1)
-shape = SubResource("CapsuleShape2D_e1fkv")
+position = Vector2(0, -6)
+shape = SubResource("CircleShape2D_24h72")
+
+[node name="DetectionArea" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea"]
+position = Vector2(0, -5)
+shape = SubResource("CircleShape2D_afnd6")
+
+[node name="Timers" type="Node" parent="."]
+
+[node name="InvicTimer" type="Timer" parent="Timers"]
+one_shot = true
+
+[node name="AttackTimer" type="Timer" parent="Timers"]
+wait_time = 0.5
+one_shot = true
+
+[node name="ShapeCast2D" type="ShapeCast2D" parent="."]
+visible = false
+position = Vector2(1, 2)
+shape = SubResource("CircleShape2D_2nnad")
+target_position = Vector2(-17, 11)
+
+[connection signal="body_entered" from="DetectionArea" to="." method="_on_detection_area_body_entered"]
+[connection signal="body_exited" from="DetectionArea" to="." method="_on_detection_area_body_exited"]
