@@ -4,9 +4,9 @@ var player
 const SPEED = 30
 var health := 2
 var last_dir := "_down"
-enum EnemyStates {Idle,Follow,Attack}
+enum EnemyStates {Idle,Follow,Attack,Hurt,Death}
 var current_state:EnemyStates
-var attack_radius := 15.
+var attack_radius := 14.
 var direction
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 
@@ -22,6 +22,10 @@ func _physics_process(delta: float) -> void:
 			follow_player()
 		EnemyStates.Attack:
 			handle_attack()
+		EnemyStates.Death:
+			pass
+		EnemyStates.Hurt:
+			velocity = Vector2.ZERO
 	#print("Current State: " , current_state)
 
 func follow_player() -> void:
@@ -38,10 +42,18 @@ func follow_player() -> void:
 
 func take_damage(damage) -> void:
 	health -= damage
+	print("Slime Took Damage and has health %d" % health)
 	if health <= 0:
-		animated_sprite.play("death_down")
+		print("Slime Died")
+		current_state = EnemyStates.Death
+		animated_sprite.play("death" + last_dir)
 		await animated_sprite.animation_finished
 		queue_free()
+	else:
+		current_state = EnemyStates.Hurt
+		animated_sprite.play("hurt" + last_dir)
+		await animated_sprite.animation_finished
+		current_state = EnemyStates.Follow
 
 func handle_idle() -> void:
 	animated_sprite.play("idle" + last_dir)

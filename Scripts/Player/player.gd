@@ -13,9 +13,17 @@ func _ready() -> void:
 
 func update_velocity() -> void:
 	move_and_slide()
+	for i in get_slide_collision_count():
+		var collision = get_slide_collision(i)
+		var collider = collision.get_collider()
+		
+		if collider is RigidBody2D:
+			var push_direction = -collision.get_normal()
+			collider.apply_central_impulse(push_direction * 1.)
+			
 
-func _physics_process(_delta: float) -> void:
-	movement_logic()
+#func _physics_process(_delta: float) -> void:
+	#movement_logic()
 
 func movement_logic():
 	#if Input.is_action_just_pressed("move_up"):
@@ -53,4 +61,5 @@ func update_shapecast_direction():
 		shape_cast.target_position = Vector2(0, attack_range if direction.y > 0 else -attack_range)
 
 func take_damage(amount) -> void:
-	print("Player Took %d Damage" % amount)
+	#print("Player Took %d Damage" % amount)
+	pass

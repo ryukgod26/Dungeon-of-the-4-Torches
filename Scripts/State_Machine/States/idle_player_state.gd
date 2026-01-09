@@ -5,6 +5,7 @@ func enter() -> void:
 	Globals.player.velocity = Vector2.ZERO
 
 func physics_update(delta: float) -> void:
+	Globals.player.movement_logic()
 	Globals.player.update_animation()
 	if Globals.player.direction != Vector2.ZERO:
 		transition.emit("WalkingPlayerState")

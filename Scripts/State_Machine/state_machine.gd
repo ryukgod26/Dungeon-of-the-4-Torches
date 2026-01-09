@@ -21,7 +21,7 @@ func _process(delta: float) -> void:
 func _physics_process(delta: float) -> void:
 	current_state.physics_update(delta)
 	Globals.debug.add_property("State",current_state.name,1)
-	print("Current State: ", current_state)
+	#print("Current State: ", current_state)
 
 func _on_state_transition(new_state_name: String):
 	var new_state = states[new_state_name.to_lower()]

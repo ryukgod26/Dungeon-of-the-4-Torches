@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://d2vvq0ccs2hf4"]
+
+[ext_resource type="Texture2D" uid="uid://dolkudwl5wkk4" path="res://assets/Tilesets/tiles.png" id="1_3ddkk"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uagl8"]
+atlas = ExtResource("1_3ddkk")
+region = Rect2(102.689224, 736.83905, 19.730583, 30.230225)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3ddkk"]
+size = Vector2(13, 15.5)
+
+[node name="Block" type="RigidBody2D"]
+collision_layer = 8
+collision_mask = 2
+mass = 3.0
+gravity_scale = 0.0
+lock_rotation = true
+linear_damp = 5.0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("AtlasTexture_uagl8")
+offset = Vector2(0, -14)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, -13.25)
+shape = SubResource("RectangleShape2D_3ddkk")

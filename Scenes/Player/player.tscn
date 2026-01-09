@@ -562,7 +562,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_86q5m")
 }],
-"loop": true,
+"loop": false,
 "name": &"attack1_down",
 "speed": 5.0
 }, {
@@ -591,7 +591,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_54f7x")
 }],
-"loop": true,
+"loop": false,
 "name": &"attack1_left",
 "speed": 5.0
 }, {
@@ -620,7 +620,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_cco24")
 }],
-"loop": true,
+"loop": false,
 "name": &"attack1_right",
 "speed": 5.0
 }, {
@@ -649,7 +649,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_6g3dj")
 }],
-"loop": true,
+"loop": false,
 "name": &"attack1_up",
 "speed": 5.0
 }, {
@@ -678,7 +678,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_nl7c5")
 }],
-"loop": true,
+"loop": false,
 "name": &"attack2_down",
 "speed": 5.0
 }, {
@@ -707,7 +707,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_6j6hp")
 }],
-"loop": true,
+"loop": false,
 "name": &"attack2_left",
 "speed": 5.0
 }, {
@@ -736,7 +736,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_4pk6p")
 }],
-"loop": true,
+"loop": false,
 "name": &"attack2_right",
 "speed": 5.0
 }, {
@@ -765,7 +765,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_2vgcd")
 }],
-"loop": true,
+"loop": false,
 "name": &"attack2_up",
 "speed": 5.0
 }, {
@@ -1016,10 +1016,8 @@ script = ExtResource("1_yyp3u")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -18)
 sprite_frames = SubResource("SpriteFrames_phvcy")
-animation = &"attack1_right"
+animation = &"attack2_left"
 autoplay = "idle_down"
-frame = 2
-frame_progress = 0.7561666
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -11)
@@ -1056,6 +1054,7 @@ one_shot = true
 one_shot = true
 
 [node name="ShapeCast" type="ShapeCast2D" parent="."]
-position = Vector2(7, -12)
+position = Vector2(-3, -12)
 shape = SubResource("CircleShape2D_jincj")
 target_position = Vector2(25, 0)
+collision_mask = 12

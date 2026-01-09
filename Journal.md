@@ -46,3 +46,22 @@
 - **Changes**:
   - Added assets from itch.io into the Game for testing
   - Created Some Decorations and floor and also tested Y-Sorting
+
+## Day 3 [09/01/2025]
+
+### Player System
+- **Changes**:
+  - Fixed the Attack Animation Bug
+  - Added Damage For Attacks which means Player Can now Damage ands kill Enemies
+  - ShapeCast2D now Perfectly alligns with Player
+
+### Enemy System - Slimes
+- **Changes**:
+  - Created Two New States Death and Hurt.
+  - Added Logic for Death and Hurt
+  - Slime ca Die and damage the Player now.
+
+  ### World Changes
+- **Changes**:
+  - Created Box as a RigidBody2D for Puzzles.
+  - Created SPikes to Damage Player.
