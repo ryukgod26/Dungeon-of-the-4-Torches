@@ -47,7 +47,7 @@
   - Added assets from itch.io into the Game for testing
   - Created Some Decorations and floor and also tested Y-Sorting
 
-## Day 3 [09/01/2025]
+## Day 3 [09/01/2026]
 
 ### Player System
 - **Changes**:
@@ -65,3 +65,7 @@
 - **Changes**:
   - Created Box as a RigidBody2D for Puzzles.
   - Created SPikes to Damage Player.
+
+## Day 4[10/01/2026]
+` **Changes**
+  - Updated health system and add health bar UI; fix spike activation logic

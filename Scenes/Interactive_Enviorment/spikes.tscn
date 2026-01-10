@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://b15bsg5jtpvqm"]
+[gd_scene load_steps=13 format=3 uid="uid://b15bsg5jtpvqm"]
 
 [ext_resource type="Script" uid="uid://qw844c1smxdu" path="res://Scripts/Interactive_Enviorment/spikes.gd" id="1_c8smu"]
 [ext_resource type="Texture2D" uid="uid://dtvesve1g201a" path="res://assets/Sprites/Interactive_Enviorment/floor spikes/keyframes/small_wood/small_wood_spike_01.png" id="1_r4go5"]
@@ -22,6 +22,10 @@ region = Rect2(0, 0, 72, 133)
 atlas = ExtResource("4_qmw5a")
 region = Rect2(0, 0, 72, 133)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_c8smu"]
+atlas = ExtResource("1_r4go5")
+region = Rect2(0, 0, 72, 133)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_mlxkc"]
 animations = [{
 "frames": [{
@@ -37,11 +41,14 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_b2cje")
 }],
-"loop": true,
+"loop": false,
 "name": &"attack",
 "speed": 5.0
 }, {
-"frames": [],
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c8smu")
+}],
 "loop": true,
 "name": &"none",
 "speed": 5.0
@@ -51,13 +58,13 @@ animations = [{
 size = Vector2(36, 122)
 
 [node name="Spikes" type="Area2D"]
+scale = Vector2(0.5, 0.5)
 script = ExtResource("1_c8smu")
 
 [node name="AnimatedSprite" type="AnimatedSprite2D" parent="."]
 scale = Vector2(0.5, 0.5)
 sprite_frames = SubResource("SpriteFrames_mlxkc")
-animation = &"attack"
-frame_progress = 0.52565145
+animation = &"none"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-2, 2)

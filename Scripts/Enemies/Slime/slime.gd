@@ -2,17 +2,22 @@ extends CharacterBody2D
 
 var player
 const SPEED = 30
-var health := 2
+var health := 2:
+	set(new_health):
+		health = new_health
+		health_bar._set_health(health)
 var last_dir := "_down"
 enum EnemyStates {Idle,Follow,Attack,Hurt,Death}
 var current_state:EnemyStates
 var attack_radius := 14.
 var direction
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
+@onready var health_bar: ProgressBar = $HealthBar
 
 func _ready() -> void:
 	animated_sprite.play("idle_down")
 	current_state = EnemyStates.Idle
+	health_bar._init_health(health)
 
 func _physics_process(delta: float) -> void:
 	match current_state:

@@ -1025,6 +1025,10 @@ shape = SubResource("CircleShape2D_eksi1")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(4, 4)
+limit_smoothed = true
+rotation_smoothing_enabled = true
+drag_horizontal_enabled = true
+drag_vertical_enabled = true
 
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("intial_state")]
 script = ExtResource("18_h8ma5")

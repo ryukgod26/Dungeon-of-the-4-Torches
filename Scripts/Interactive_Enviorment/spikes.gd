@@ -6,8 +6,6 @@ extends Area2D
 
 var is_active := false
 
-
-
 func _on_timer_timeout() -> void:
 	is_active = not is_active
 	

@@ -723,7 +723,7 @@ tile_set = SubResource("TileSet_fwsls")
 
 [node name="DungeonDecoration" type="TileMapLayer" parent="Enviorment/TileMapLayers"]
 y_sort_enabled = true
-tile_map_data = PackedByteArray("AAD3//7/AgABAAYAAAD3////AgABAAcAAAD3/wAAAgABAAgAAAD0//7/AgABAAYAAAD0////AgABAAcAAAD0/wAAAgABAAgAAAD4/wAAAgACAAcAAAA=")
+tile_map_data = PackedByteArray("AAD3//7/AgABAAYAAAD3////AgABAAcAAAD3/wAAAgABAAgAAAD0//7/AgABAAYAAAD0////AgABAAcAAAD0/wAAAgABAAgAAAD4/wAAAgACAAcAAAD7/wAAAgADAAIAAAD7/wEAAgADAAMAAAD8/wAAAgAEAAIAAAD8/wEAAgAEAAMAAAD+/wAAAgADAAIAAAD+/wEAAgADAAMAAAD//wAAAgAEAAIAAAD//wEAAgAEAAMAAAA=")
 tile_set = SubResource("TileSet_pnn7r")
 
 [node name="Edges" type="TileMapLayer" parent="Enviorment/TileMapLayers"]
@@ -755,3 +755,7 @@ position = Vector2(-45, -24)
 
 [node name="Slime" parent="Entities/Enemies" instance=ExtResource("8_0anud")]
 position = Vector2(90, -1)
+
+[node name="BorderCollisions" type="StaticBody2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="BorderCollisions"]
