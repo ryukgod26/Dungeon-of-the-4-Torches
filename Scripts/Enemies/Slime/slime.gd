@@ -2,6 +2,7 @@ extends CharacterBody2D
 
 var player
 const SPEED = 30
+const DAMAGE := 1
 var health := 2:
 	set(new_health):
 		health = new_health
@@ -9,7 +10,7 @@ var health := 2:
 var last_dir := "_down"
 enum EnemyStates {Idle,Follow,Attack,Hurt,Death}
 var current_state:EnemyStates
-var attack_radius := 14.
+var attack_range := 14.
 var direction
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var health_bar: ProgressBar = $HealthBar
@@ -19,7 +20,7 @@ func _ready() -> void:
 	current_state = EnemyStates.Idle
 	health_bar._init_health(health)
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	match current_state:
 		EnemyStates.Idle:
 			handle_idle()
@@ -39,9 +40,10 @@ func follow_player() -> void:
 		velocity = direction * SPEED
 		last_dir = Globals.get_direction(direction)
 		animated_sprite.play("run" + last_dir)
-		if global_position.distance_to(player.global_position) < attack_radius:
+		if global_position.distance_to(player.global_position) < attack_range:
 			current_state = EnemyStates.Attack
 		move_and_slide()
+		update_shapecast_direction()
 	else:
 		current_state = EnemyStates.Idle
 
@@ -66,17 +68,27 @@ func handle_idle() -> void:
 		current_state = EnemyStates.Follow
 
 func handle_attack() -> void:
-	#if not $Timers/AttackTimer.is_stopped():
-		#animated_sprite.play("idle" + last_dir)
+	if not $Timers/AttackTimer.is_stopped():
+		return
+	$Timers/AttackTimer.start()
 	velocity = Vector2.ZERO
 	last_dir = Globals.get_direction(direction)
 	animated_sprite.play("attack" + last_dir)
-	player.take_damage(1)
+	if $ShapeCast2D.is_colliding():
+		for i in$ShapeCast2D.get_collision_count():
+			var target = $ShapeCast2D.get_collider(i)
+			if target.is_in_group("Player"):
+				target.take_damage(DAMAGE)
+	
+	#player.take_damage(DAMAGE)
 	$Timers/AttackTimer.start()
 	if not player:
 		current_state = EnemyStates.Idle
-	if global_position.distance_to(player.global_position) > attack_radius:
-		current_state = EnemyStates.Follow
+	if player:
+		if global_position.distance_to(player.global_position) > attack_range:
+			current_state = EnemyStates.Follow
+	else:
+		current_state = EnemyStates.Idle
 
 func _on_detection_area_body_entered(body: Node2D) -> void:
 	if body.is_in_group("Player"):
@@ -86,3 +98,9 @@ func _on_detection_area_body_entered(body: Node2D) -> void:
 func _on_detection_area_body_exited(body: Node2D) -> void:
 	if body.is_in_group("Player"):
 		player = null
+
+func update_shapecast_direction():
+	if abs(direction.x) > abs(direction.y):
+		$ShapeCast2D.target_position = Vector2(attack_range if direction.x > 0 else -attack_range, 0)
+	else:
+		$ShapeCast2D.target_position = Vector2(0, attack_range if direction.y > 0 else -attack_range)

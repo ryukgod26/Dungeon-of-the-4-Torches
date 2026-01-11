@@ -3,6 +3,13 @@ extends CharacterBody2D
 
 const DEFAULT_SPEED = 100.0
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
+@onready var heart_container: MarginContainer = $CanvasLayer/HeartContainer
+
+
+var health := 3:
+	set(new_val):
+		heart_container.update_hearts(health,new_val-health)
+		health = new_val
 var last_dir = "_down"
 var direction:Vector2 = Vector2.ZERO
 @onready var shape_cast: ShapeCast2D = $ShapeCast
@@ -10,6 +17,8 @@ var attack_range := 25
 
 func _ready() -> void:
 	Globals.player = self
+	heart_container.intial_hearts(health)
+
 
 func update_velocity() -> void:
 	move_and_slide()
@@ -61,5 +70,8 @@ func update_shapecast_direction():
 		shape_cast.target_position = Vector2(0, attack_range if direction.y > 0 else -attack_range)
 
 func take_damage(amount) -> void:
-	#print("Player Took %d Damage" % amount)
-	pass
+	if not $Timers/Invictimer.is_stopped():
+		return
+	health -= amount
+	$Timers/Invictimer.start()
+	print(health)

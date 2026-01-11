@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Dungeon of the 4 Torches"
-run/main_scene="uid://brdyub4vfpfgq"
+run/main_scene="uid://duf2kdmwt87y6"
 config/features=PackedStringArray("4.5", "Mobile")
 config/icon="res://icon.svg"
 

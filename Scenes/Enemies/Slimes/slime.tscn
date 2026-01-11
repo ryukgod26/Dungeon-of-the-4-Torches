@@ -1487,13 +1487,14 @@ shape = SubResource("CircleShape2D_afnd6")
 one_shot = true
 
 [node name="AttackTimer" type="Timer" parent="Timers"]
-wait_time = 0.5
+wait_time = 3.0
 one_shot = true
 
 [node name="ShapeCast2D" type="ShapeCast2D" parent="."]
 position = Vector2(0, -6)
 shape = SubResource("CircleShape2D_2nnad")
 target_position = Vector2(14, 0)
+collision_mask = 2
 
 [node name="HealthBar" parent="." instance=ExtResource("8_afnd6")]
 anchors_preset = 10

@@ -55,19 +55,21 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_npw1e"]
-size = Vector2(36, 122)
+size = Vector2(60, 122)
 
 [node name="Spikes" type="Area2D"]
 scale = Vector2(0.5, 0.5)
+collision_mask = 2
 script = ExtResource("1_c8smu")
 
 [node name="AnimatedSprite" type="AnimatedSprite2D" parent="."]
 scale = Vector2(0.5, 0.5)
 sprite_frames = SubResource("SpriteFrames_mlxkc")
 animation = &"none"
+autoplay = "none"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-2, 2)
+position = Vector2(-1, 2)
 scale = Vector2(0.5, 0.5)
 shape = SubResource("RectangleShape2D_npw1e")
 
@@ -76,4 +78,5 @@ wait_time = 2.0
 autostart = true
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

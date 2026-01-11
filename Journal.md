@@ -67,5 +67,15 @@
   - Created SPikes to Damage Player.
 
 ## Day 4[10/01/2026]
-` **Changes**
+- **Changes**
   - Updated health system and add health bar UI; fix spike activation logic
+
+## Dayy 4[11/01/2026]
+- **Changes**
+  - Fixed Many Bugs in the Player.
+  - Gave Hearts to the Player as a Health Bar
+  - Added Boss to the Game
+  - Created and added all the 5 Rooms and decorated them.
+  - Added Traps with Different Timers
+  - Added Keys to Collect and Unlock the North Door
+  - Did Many Other Things (can't Describe right now I am tired) and there are still bugs in the game which I will solve today

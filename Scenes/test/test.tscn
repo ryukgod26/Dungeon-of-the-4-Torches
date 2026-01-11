@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=4 uid="uid://brdyub4vfpfgq"]
+[gd_scene load_steps=31 format=4 uid="uid://brdyub4vfpfgq"]
 
 [ext_resource type="PackedScene" uid="uid://cedkmx6hm2rp8" path="res://Scenes/Player/player.tscn" id="1_hpcu5"]
 [ext_resource type="Texture2D" uid="uid://h8garaqfgec5" path="res://assets/Tilesets/dungeon_ v1.0/dungeon_ v1.0/dungeon_.png" id="1_pnn7r"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://d2vvq0ccs2hf4" path="res://Scenes/Interactive_Enviorment/block.tscn" id="7_vhgie"]
 [ext_resource type="PackedScene" uid="uid://buypn5fthmooc" path="res://Scenes/Enemies/Slimes/slime.tscn" id="8_0anud"]
 [ext_resource type="PackedScene" uid="uid://b15bsg5jtpvqm" path="res://Scenes/Interactive_Enviorment/spikes.tscn" id="8_6dvf5"]
+[ext_resource type="PackedScene" uid="uid://c05mgkxbchei4" path="res://Scenes/Enemies/Boss/boss.tscn" id="11_t10td"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_40bug"]
 texture = ExtResource("1_pnn7r")
@@ -755,6 +756,8 @@ position = Vector2(-45, -24)
 
 [node name="Slime" parent="Entities/Enemies" instance=ExtResource("8_0anud")]
 position = Vector2(90, -1)
+
+[node name="Boss" parent="Entities/Enemies" instance=ExtResource("11_t10td")]
 
 [node name="BorderCollisions" type="StaticBody2D" parent="."]
 
