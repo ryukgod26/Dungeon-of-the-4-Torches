@@ -2686,6 +2686,17 @@ position = Vector2(-5, 44)
 [node name="Player" parent="Entities/Player" instance=ExtResource("2_w7bjj")]
 position = Vector2(-43, 37)
 
+[node name="Camera2D" type="Camera2D" parent="Entities/Player/Player"]
+zoom = Vector2(4, 4)
+limit_left = -96
+limit_top = -64
+limit_right = 224
+limit_bottom = 160
+limit_smoothed = true
+rotation_smoothing_enabled = true
+drag_horizontal_enabled = true
+drag_vertical_enabled = true
+
 [node name="TargetArea" type="Area2D" parent="."]
 collision_layer = 0
 collision_mask = 8

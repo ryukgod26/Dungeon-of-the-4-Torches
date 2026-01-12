@@ -560,11 +560,6 @@ y_sort_enabled = true
 tile_map_data = PackedByteArray("AAAEAPv/AAAJAAUAAAAEAAgAAAALAAUAAAAOAPv/AAALAAUAAAAOAAcAAAAMAAUAAAD7//v/AAALAAUAAAA=")
 tile_set = SubResource("TileSet_l1v7l")
 
-[node name="Player" type="Node2D" parent="Enviorment/TileMapLayers"]
-
-[node name="Player" parent="Enviorment/TileMapLayers/Player" instance=ExtResource("2_pxnd2")]
-position = Vector2(112, -61)
-
 [node name="Traps1" type="Node2D" parent="Enviorment"]
 y_sort_enabled = true
 
@@ -797,6 +792,22 @@ position = Vector2(271, 0)
 delay_time = 3
 
 [node name="Entities" type="Node2D" parent="."]
+
+[node name="Player" type="Node2D" parent="Entities"]
+
+[node name="Player" parent="Entities/Player" instance=ExtResource("2_pxnd2")]
+position = Vector2(112, -61)
+
+[node name="Camera2D" type="Camera2D" parent="Entities/Player/Player"]
+zoom = Vector2(4, 4)
+limit_left = -64
+limit_top = -112
+limit_right = 304
+limit_bottom = 176
+limit_smoothed = true
+rotation_smoothing_enabled = true
+drag_horizontal_enabled = true
+drag_vertical_enabled = true
 
 [node name="Exit" type="Area2D" parent="."]
 collision_layer = 0

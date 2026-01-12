@@ -1024,13 +1024,6 @@ autoplay = "idle_down"
 position = Vector2(0, -11)
 shape = SubResource("CircleShape2D_eksi1")
 
-[node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(4, 4)
-limit_smoothed = true
-rotation_smoothing_enabled = true
-drag_horizontal_enabled = true
-drag_vertical_enabled = true
-
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("intial_state")]
 script = ExtResource("18_h8ma5")
 intial_state = NodePath("IdlePlayerState")
@@ -1077,3 +1070,33 @@ offset_right = 44.0
 offset_bottom = 32.0
 grow_horizontal = 1
 grow_vertical = 1
+
+[node name="Death" type="Control" parent="."]
+process_mode = 3
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="CenterContainer" type="CenterContainer" parent="Death"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Death/CenterContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="Label" type="Label" parent="Death/CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "YOU DIED"
+
+[node name="Button" type="Button" parent="Death/CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "RESTART"
+
+[connection signal="pressed" from="Death/CenterContainer/VBoxContainer/Button" to="." method="_on_button_pressed"]

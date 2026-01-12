@@ -8,7 +8,8 @@ const DEFAULT_SPEED = 100.0
 
 var health := 3:
 	set(new_val):
-		heart_container.update_hearts(health,new_val-health)
+		heart_container.update_hearts(new_val,new_val-health)
+		print("Health Updated")
 		health = new_val
 var last_dir = "_down"
 var direction:Vector2 = Vector2.ZERO
@@ -72,6 +73,14 @@ func update_shapecast_direction():
 func take_damage(amount) -> void:
 	if not $Timers/Invictimer.is_stopped():
 		return
-	health -= amount
+	health = health - amount
 	$Timers/Invictimer.start()
 	print(health)
+	if health <= 0:
+		get_tree().paused = true
+		$Death.visible = true
+		
+
+
+func _on_button_pressed() -> void:
+	get_tree().change_scene_to_file("res://Scenes/Main_Scene/game.tscn")
