@@ -70,7 +70,7 @@
 - **Changes**
   - Updated health system and add health bar UI; fix spike activation logic
 
-## Dayy 4[11/01/2026]
+## Day 4[11/01/2026]
 - **Changes**
   - Fixed Many Bugs in the Player.
   - Gave Hearts to the Player as a Health Bar
@@ -79,3 +79,11 @@
   - Added Traps with Different Timers
   - Added Keys to Collect and Unlock the North Door
   - Did Many Other Things (can't Describe right now I am tired) and there are still bugs in the game which I will solve today
+
+# Creating Controller
+
+## Day1[17/01/2026]
+  SO I Started Creating my controller very late like just days before dead line but I am still hoping to complete it
+  I have Added the Components I need Like the XIAO Microcontroller, 6 Push Buttons, 2 Potentiometers which will work as joysticks and a Led (Still Figuring out the LED Purpose)
+  So I have Created the Basic Schematic and I would have done the most Part today but I got many Unexpected errors in kicad like missing footprint because of which I had delete my whole Project 3 times and recraete it from scratch.
+  Hopefully I will Complete the Controler Tommorow. I almost spent more 3 hours on the COntroler today (But Only 2 or less are Tracked)
