@@ -87,3 +87,6 @@
   I have Added the Components I need Like the XIAO Microcontroller, 6 Push Buttons, 2 Potentiometers which will work as joysticks and a Led (Still Figuring out the LED Purpose)
   So I have Created the Basic Schematic and I would have done the most Part today but I got many Unexpected errors in kicad like missing footprint because of which I had delete my whole Project 3 times and recraete it from scratch.
   Hopefully I will Complete the Controler Tommorow. I almost spent more 3 hours on the COntroler today (But Only 2 or less are Tracked)
+
+## Day 2
+So I solved all the errors I was getting in the kicad. Now Schematics are all done. All Which is left is PCB. WHich WIll be done in few hours. I have Changed all the Buttons I used for hackpad to Open Dual PW Push Buttons and I have connected the componenets with each other with the help of labels in the schematic editor. It took a lot of time because this was first time doing alll this because I did not even knew about the labels in the schematic editor.
