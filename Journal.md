@@ -90,3 +90,6 @@
 
 ## Day 2
 So I solved all the errors I was getting in the kicad. Now Schematics are all done. All Which is left is PCB. WHich WIll be done in few hours. I have Changed all the Buttons I used for hackpad to Open Dual PW Push Buttons and I have connected the componenets with each other with the help of labels in the schematic editor. It took a lot of time because this was first time doing alll this because I did not even knew about the labels in the schematic editor.
+
+## Day 3
+SO I have Started and finsihed the PCb. I had to assign all the footprint to all the components in the schematic editor. Then After Importing them I had to import a Graphic Picture of Controller Outline. SO I put all the componenets in the controller outline. Then I started all the componenets with each other (Although I forgot to reimport the microcontroller because it did not had labels). I have Connected all the Data Pins and Vcc Pins on the front (with one exception) and all the Ground Pins on the Back SIde. I Have Connected the LED with the resistor and then second end with Ground. The Resistor is Directy COnnected with the VCC. Now I am Only facing One Problem which is that there is a small gap in my controller outline because of which the kicad is not abe to properly cut the pcb into my desired shape.
