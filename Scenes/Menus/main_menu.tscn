@@ -1,0 +1,46 @@
+[gd_scene format=3 uid="uid://ygfoawt4jk7h"]
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ButtonManager" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -289.0
+offset_top = -50.5
+offset_bottom = 99.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_constants/separation = 20
+
+[node name="Play" type="Button" parent="ButtonManager"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "PLAY"
+
+[node name="Options" type="Button" parent="ButtonManager"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "OPTIONS"
+
+[node name="Quit" type="Button" parent="ButtonManager"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "QUIT"

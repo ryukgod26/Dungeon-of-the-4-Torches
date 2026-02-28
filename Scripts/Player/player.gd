@@ -20,7 +20,6 @@ func _ready() -> void:
 	Globals.player = self
 	heart_container.intial_hearts(health)
 
-
 func update_velocity() -> void:
 	move_and_slide()
 	for i in get_slide_collision_count():
@@ -54,7 +53,6 @@ func movement_logic():
 	direction = Input.get_vector("move_left", "move_right", "move_up", "move_down").normalized()
 	velocity = direction * DEFAULT_SPEED
 
-
 func update_animation() -> void:
 	if direction == Vector2.ZERO:
 		animated_sprite.play("idle" + last_dir)
@@ -79,8 +77,6 @@ func take_damage(amount) -> void:
 	if health <= 0:
 		get_tree().paused = true
 		$Death.visible = true
-		
-
 
 func _on_button_pressed() -> void:
 	get_tree().change_scene_to_file("res://Scenes/Main_Scene/game.tscn")

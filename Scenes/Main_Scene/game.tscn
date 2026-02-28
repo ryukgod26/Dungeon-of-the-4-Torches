@@ -1292,6 +1292,7 @@ autoplay = "default"
 frame_progress = 0.2307153
 
 [node name="Entities" type="Node2D" parent="."]
+y_sort_enabled = true
 
 [node name="Player" type="Node2D" parent="Entities"]
 position = Vector2(0, -3)
