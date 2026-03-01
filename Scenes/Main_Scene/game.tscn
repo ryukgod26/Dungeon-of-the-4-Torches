@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=4 uid="uid://duf2kdmwt87y6"]
+[gd_scene load_steps=31 format=4 uid="uid://duf2kdmwt87y6"]
 
 [ext_resource type="Script" uid="uid://m354fgnlgdqo" path="res://Scripts/Levels/game.gd" id="1_cvkjl"]
 [ext_resource type="Texture2D" uid="uid://h8garaqfgec5" path="res://assets/Tilesets/dungeon_ v1.0/dungeon_ v1.0/dungeon_.png" id="1_n4ftu"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://dvvymynsdn3b0" path="res://assets/Tilesets/dungeon_ v1.0/dungeon_ v1.0/waterLavaAcid_.png" id="4_fhsbl"]
 [ext_resource type="Texture2D" uid="uid://bwv7iilp6gobn" path="res://assets/Tilesets/dungeon_ v1.0/dungeon_ v1.0/traps_.png" id="5_2hi74"]
 [ext_resource type="PackedScene" uid="uid://cedkmx6hm2rp8" path="res://Scenes/Player/player.tscn" id="6_2hi74"]
+[ext_resource type="PackedScene" uid="uid://6vtxdg8nyba8" path="res://Scenes/Menus/pause_menu.tscn" id="8_fo5ao"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_2usav"]
 texture = ExtResource("1_n4ftu")
@@ -1380,6 +1381,8 @@ shape = SubResource("RectangleShape2D_4iau0")
 position = Vector2(239, -87)
 rotation = 1.5707964
 texture = SubResource("AtlasTexture_cvkjl")
+
+[node name="PauseMenu" parent="." instance=ExtResource("8_fo5ao")]
 
 [connection signal="body_entered" from="GateAreas/SouthGate/SouthGate" to="." method="_on_south_gate_body_entered"]
 [connection signal="body_entered" from="GateAreas/NorthGate/NorthGate" to="." method="_on_north_gate_body_entered"]

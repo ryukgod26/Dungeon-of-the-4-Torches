@@ -1,6 +1,43 @@
-[gd_scene load_steps=5 format=3 uid="uid://6vtxdg8nyba8"]
+[gd_scene load_steps=14 format=3 uid="uid://6vtxdg8nyba8"]
 
 [ext_resource type="Script" uid="uid://vfx0a1nuwcpl" path="res://Scripts/Menus/pause_menu.gd" id="1_as6yf"]
+[ext_resource type="FontFile" uid="uid://nwh7jd61v3uv" path="res://assets/fonts/coolvetica/Coolvetica Hv Comp.otf" id="2_1j166"]
+[ext_resource type="FontFile" uid="uid://c0j8mm3s5hgyu" path="res://assets/fonts/roboto/Roboto-Bold.ttf" id="2_tf3q2"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nwnlq"]
+bg_color = Color(0.51500785, 0.61782014, 0.67848444, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7smr3"]
+bg_color = Color(0, 0.67937046, 0.7371383, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tf3q2"]
+bg_color = Color(0.32544088, 0.3254409, 0.32544088, 1)
+corner_radius_top_left = 30
+corner_radius_top_right = 30
+corner_radius_bottom_right = 30
+corner_radius_bottom_left = 30
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pw12o"]
+bg_color = Color(0.24115604, 0.24115604, 0.24115601, 1)
+corner_radius_top_left = 30
+corner_radius_top_right = 30
+corner_radius_bottom_right = 30
+corner_radius_bottom_left = 30
+shadow_size = 3
+shadow_offset = Vector2(0, 5)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1j166"]
+bg_color = Color(0.35906905, 0.35906908, 0.35906896, 1)
+corner_radius_top_left = 30
+corner_radius_top_right = 30
+corner_radius_bottom_right = 30
+corner_radius_bottom_left = 30
+shadow_size = 5
+shadow_offset = Vector2(0, 10)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7smr3"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_nwnlq"]
 
 [sub_resource type="Animation" id="Animation_lso3q"]
 resource_name = "open"
@@ -48,6 +85,18 @@ tracks/3/path = NodePath("Menulbl:self_modulate")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("ButtonManager:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
 "times": PackedFloat32Array(0, 0.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
@@ -104,6 +153,18 @@ tracks/3/keys = {
 "update": 0,
 "values": [Color(1, 1, 1, 0)]
 }
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("ButtonManager:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_1j166"]
 _data = {
@@ -112,6 +173,8 @@ _data = {
 }
 
 [node name="PauseMenu" type="CanvasLayer"]
+process_mode = 3
+layer = 2
 script = ExtResource("1_as6yf")
 
 [node name="Panel" type="Panel" parent="."]
@@ -119,23 +182,37 @@ anchors_preset = 9
 anchor_bottom = 1.0
 offset_right = 161.0
 grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_nwnlq")
+
+[node name="Panel2" type="Panel" parent="."]
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_right = 161.0
+offset_bottom = -553.0
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_7smr3")
 
 [node name="Pauselbl" type="Label" parent="."]
 self_modulate = Color(1, 1, 1, 0)
 offset_left = -87.0
-offset_right = -40.0
-offset_bottom = 23.0
+offset_right = 2.0
+offset_bottom = 38.0
+theme_override_fonts/font = ExtResource("2_tf3q2")
+theme_override_font_sizes/font_size = 32
 text = "Pause"
 
 [node name="Menulbl" type="Label" parent="."]
 self_modulate = Color(1, 1, 1, 0)
 offset_left = 199.0
 offset_top = 28.0
-offset_right = 244.0
-offset_bottom = 51.0
+offset_right = 280.0
+offset_bottom = 66.0
+theme_override_fonts/font = ExtResource("2_tf3q2")
+theme_override_font_sizes/font_size = 32
 text = "Menu"
 
 [node name="ButtonManager" type="VBoxContainer" parent="."]
+modulate = Color(1, 1, 1, 0)
 offset_top = 141.0
 offset_right = 160.0
 offset_bottom = 279.0
@@ -144,11 +221,23 @@ theme_override_constants/separation = 20
 [node name="Resume" type="Button" parent="ButtonManager"]
 layout_mode = 2
 size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("2_1j166")
+theme_override_font_sizes/font_size = 40
+theme_override_styles/normal = SubResource("StyleBoxFlat_tf3q2")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_pw12o")
+theme_override_styles/hover = SubResource("StyleBoxFlat_1j166")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_7smr3")
 text = "Resume"
 
 [node name="Quit" type="Button" parent="ButtonManager"]
 layout_mode = 2
 size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("2_1j166")
+theme_override_font_sizes/font_size = 40
+theme_override_styles/normal = SubResource("StyleBoxFlat_tf3q2")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_pw12o")
+theme_override_styles/hover = SubResource("StyleBoxFlat_1j166")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_nwnlq")
 text = "QUIT"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
