@@ -1,6 +1,39 @@
-[gd_scene load_steps=2 format=3 uid="uid://ygfoawt4jk7h"]
+[gd_scene load_steps=10 format=3 uid="uid://ygfoawt4jk7h"]
 
 [ext_resource type="Script" uid="uid://bswslmvafa402" path="res://Scripts/Menus/main_menu.gd" id="1_38aua"]
+[ext_resource type="Texture2D" uid="uid://cwbxkgf824qj2" path="res://assets/Images/main_menu.png" id="2_pha2q"]
+[ext_resource type="FontFile" uid="uid://nwh7jd61v3uv" path="res://assets/fonts/coolvetica/Coolvetica Hv Comp.otf" id="3_penys"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_penys"]
+texture = ExtResource("2_pha2q")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pha2q"]
+bg_color = Color(0, 0.48904866, 0.28595874, 1)
+corner_radius_top_left = 40
+corner_radius_top_right = 40
+corner_radius_bottom_right = 40
+corner_radius_bottom_left = 40
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_penys"]
+bg_color = Color(0, 0.38738278, 0.22191676, 1)
+corner_radius_top_left = 40
+corner_radius_top_right = 40
+corner_radius_bottom_right = 40
+corner_radius_bottom_left = 40
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_aur2u"]
+bg_color = Color(0, 0.6076279, 0.35978281, 1)
+corner_radius_top_left = 40
+corner_radius_top_right = 40
+corner_radius_bottom_right = 40
+corner_radius_bottom_left = 40
+shadow_color = Color(0, 0, 0, 1)
+shadow_size = 5
+shadow_offset = Vector2(0, 4)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5wi6m"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_pha2q"]
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -18,6 +51,20 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_penys")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.28038195
+anchor_top = 0.108024694
+anchor_right = 0.7013889
+anchor_bottom = 0.25617284
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("3_penys")
+theme_override_font_sizes/font_size = 78
+text = "DUNGEON OF 4 TORCHES"
+metadata/_edit_use_anchors_ = true
 
 [node name="ButtonManager" type="VBoxContainer" parent="."]
 layout_mode = 1
@@ -36,11 +83,19 @@ theme_override_constants/separation = 13
 [node name="Play" type="Button" parent="ButtonManager"]
 layout_mode = 2
 size_flags_vertical = 3
+theme_override_styles/normal = SubResource("StyleBoxFlat_pha2q")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_penys")
+theme_override_styles/hover = SubResource("StyleBoxFlat_aur2u")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_5wi6m")
 text = "PLAY"
 
 [node name="Quit" type="Button" parent="ButtonManager"]
 layout_mode = 2
 size_flags_vertical = 3
+theme_override_styles/normal = SubResource("StyleBoxFlat_pha2q")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_penys")
+theme_override_styles/hover = SubResource("StyleBoxFlat_aur2u")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_pha2q")
 text = "QUIT"
 
 [connection signal="pressed" from="ButtonManager/Play" to="." method="_on_play_pressed"]

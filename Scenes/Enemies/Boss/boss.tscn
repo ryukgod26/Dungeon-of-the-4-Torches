@@ -1,6 +1,6 @@
 [gd_scene load_steps=175 format=3 uid="uid://c05mgkxbchei4"]
 
-[ext_resource type="Script" uid="uid://l6g6scbg0vsr" path="res://Scripts/Enemies/Boss/boss.gd" id="1_rimqy"]
+[ext_resource type="Script" uid="uid://bbkbu7xfy1tnk" path="res://Scripts/Enemies/Boss/boss2.gd" id="1_851fd"]
 [ext_resource type="Texture2D" uid="uid://djyco760s0e45" path="res://assets/Sprites/Enemies/Boss/TopDown_RockBoss_EBrosAssets/TopDown_RockBoss_EBrosAssets/swipe/BossEnemy_swipe.png" id="1_wbur8"]
 [ext_resource type="Texture2D" uid="uid://ck7khbc6buk4a" path="res://assets/Sprites/Enemies/Boss/TopDown_RockBoss_EBrosAssets/TopDown_RockBoss_EBrosAssets/idle/spritesheet-5.png" id="1_ytkdc"]
 [ext_resource type="Texture2D" uid="uid://0g1u3275qcn8" path="res://assets/Sprites/Enemies/Boss/TopDown_RockBoss_EBrosAssets/TopDown_RockBoss_EBrosAssets/stomp/BossEnemy_stomp.png" id="2_1jqxt"]
@@ -1227,15 +1227,13 @@ height = 42.0
 [node name="Boss" type="CharacterBody2D"]
 y_sort_enabled = true
 collision_layer = 0
-script = ExtResource("1_rimqy")
+script = ExtResource("1_851fd")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(-1, -25)
 sprite_frames = SubResource("SpriteFrames_q64dy")
 animation = &"attack1_down"
 autoplay = "idle_down"
-frame = 9
-frame_progress = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-1, -16)
