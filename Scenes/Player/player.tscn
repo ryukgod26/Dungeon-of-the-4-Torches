@@ -1012,6 +1012,7 @@ radius = 5.0
 y_sort_enabled = true
 collision_layer = 2
 collision_mask = 13
+motion_mode = 1
 script = ExtResource("1_yyp3u")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -1074,6 +1075,7 @@ grow_vertical = 1
 [node name="Death" type="Control" parent="."]
 process_mode = 3
 visible = false
+z_index = 2
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0

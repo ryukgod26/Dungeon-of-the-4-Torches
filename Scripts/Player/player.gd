@@ -29,7 +29,7 @@ func update_velocity() -> void:
 		if collider is RigidBody2D:
 			var push_direction = -collision.get_normal()
 			collider.apply_central_impulse(push_direction * 1.)
-			
+
 
 #func _physics_process(_delta: float) -> void:
 	#movement_logic()
@@ -79,4 +79,5 @@ func take_damage(amount) -> void:
 		$Death.visible = true
 
 func _on_button_pressed() -> void:
+	get_tree().paused = false
 	get_tree().change_scene_to_file("res://Scenes/Main_Scene/game.tscn")
